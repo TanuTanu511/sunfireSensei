@@ -4,6 +4,8 @@ import Login from "./components/authentication/Login";
 import Register from "./components/authentication/Register";
 import Home from "./components/components_lite/Home";
 import Jobs from "./components/components_lite/Jobs";
+import Browse from "./components/components_lite/Browse";
+import Profile from "./components/components_lite/Profile";
 
 const appRouter = createBrowserRouter([
   {
@@ -14,6 +16,10 @@ const appRouter = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
+   {
+    path:"/Profile",
+    element:<Profile/>
+  },
   {
     path: "/register",
     element: <Register />,
@@ -21,7 +27,11 @@ const appRouter = createBrowserRouter([
   {
     path:"/Jobs",
     element: <Jobs/>
-  }
+  },
+  {
+    path:"/Browse",
+    element:<Browse/>
+  },
 ]);
 
 function App() {
