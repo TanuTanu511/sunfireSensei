@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./Navbar";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { Contact, Mail, Pen } from "lucide-react";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import AppliedJobs from "./AppliedJobs";
+import EditProfile from "./EditProfile";
 
 const skills = [
   "Artificial Intelligence",
@@ -24,6 +25,8 @@ const skills = [
 const Profile = () => {
   const isResume = true;
 
+  const [open, setOpen] = useState(true);
+
   return (
     <div>
       <Navbar />
@@ -38,7 +41,7 @@ const Profile = () => {
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
             </div>
           </div>
-          <Button variant="outline" className="text-right mt-4">
+          <Button onClick={() => setOpen(true)} variant="outline" className="text-right mt-4">
             <Pen />
           </Button>
         </div>
@@ -90,6 +93,9 @@ const Profile = () => {
         <h1 className="text-md font-bold">Applied Jobs</h1>
         {/* add application table */}
         <AppliedJobs />
+
+        {/* update profile/bio option */}
+        <EditProfile open={open} setOpen={setOpen}/>
       </div>
     </div>
   );
