@@ -4,8 +4,12 @@ import { Bookmark } from "lucide-react";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import sunfireLogo from "../assets/sunfire.jpg";
 import { Badge } from "../ui/badge";
+import { useNavigate } from "react-router-dom";
 
 const Job = () => {
+
+  const navigate = useNavigate();
+  const jobId = "1234"
   return (
     <div className="p-5 mt-10 rounded-md shadow-xl bg-white border border-gray-300 cursor-pointer hover:shadow-2xl hover:shadow-blue-200 hover:p-3">
       <div className="flex items-center justify-between mb-5">
@@ -57,7 +61,7 @@ const Job = () => {
         </div>
       </div>
       <div className="flex items-center gap-3 mt-5">
-        <Button variant="outline" className="rounded-sm">Details</Button>
+        <Button onClick={() => navigate(`/description/${jobId}`)} variant="outline" className="rounded-sm">Details</Button>
         <Button variant="outline" className="rounded-sm bg-[#5688c7] text-white">Save For Later</Button>
       </div>
     </div>
