@@ -9,20 +9,20 @@ import EditProfile from "./EditProfile";
 import { useSelector } from "react-redux";
 import store from "@/redux/store";
 
-const skills = [
-  "Artificial Intelligence",
-  "Machine Learning",
-  "Python",
-  "Java",
-  "JavaScript",
-  "C++",
-  "React",
-  "Angular",
-  "Node.js",
-  "SQL",
-  "NoSQL",
-  "Git",
-];
+// const skills = [
+//   "Artificial Intelligence",
+//   "Machine Learning",
+//   "Python",
+//   "Java",
+//   "JavaScript",
+//   "C++",
+//   "React",
+//   "Angular",
+//   "Node.js",
+//   "SQL",
+//   "NoSQL",
+//   "Git",
+// ];
 
 const Profile = () => {
   const isResume = true;
