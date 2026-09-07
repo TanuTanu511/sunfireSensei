@@ -16,18 +16,18 @@ import { Button } from "../ui/button";
 import { Loader2 } from "lucide-react";
 
 const EditProfile = ({ open, setOpen }) => {
-  const [ loading, setLoading ] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { user } = useSelector((store) => store.auth);
 
   const dispatch = useDispatch();
 
   const [input, setInput] = useState({
-    fullname:user?.fullname,
-    email:user?.email,
-    phoneNumber:user?.phoneNumber,
-    bio:user?.profile?.bio,
+    fullname: user?.fullname,
+    email: user?.email,
+    phoneNumber: user?.phoneNumber,
+    bio: user?.profile?.bio,
     skills: user?.profile?.skills?.join(", ") || "",
-    file:user?.profile?.resume,
+    file: user?.profile?.resume,
   });
 
   const ChangeEventHandler = (e) => {
@@ -42,18 +42,22 @@ const EditProfile = ({ open, setOpen }) => {
     formData.append("phoneNumber", input.phoneNumber);
     formData.append("bio", input.bio);
     formData.append("skills", input.skills);
-    if(input.file){
+    if (input.file) {
       formData.append("file", input.file);
     }
     try {
       setLoading(true);
-      const res = await axios.post(`${USER_API_ENDPOINT}/profile/update`, formData , {
-        headers:{
-          "Content-Type": "multipart/form-data",
+      const res = await axios.post(
+        `${USER_API_ENDPOINT}/profile/update`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true,
         },
-        withCredentials:true,
-      });
-      if(res.data.success){
+      );
+      if (res.data.success) {
         dispatch(setUser(res.data.user));
         toast.success(res.data.message);
         setOpen(false);
@@ -61,18 +65,16 @@ const EditProfile = ({ open, setOpen }) => {
     } catch (error) {
       console.log(error);
       toast.error("Failed to update profile");
-    }
-    finally{
+    } finally {
       setLoading(false);
     }
     console.log(input);
-  }
+  };
 
   const FileChangeHandler = (e) => {
     const file = e.target.files?.[0];
-    setInput( ...input, file);
-  }
-
+    setInput({ ...input, file: file });
+  };
 
   return (
     <div>
@@ -160,8 +162,8 @@ const EditProfile = ({ open, setOpen }) => {
 
             <DialogFooter>
               {loading ? (
-                <Button className="w-full my-4">
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin">Please wait{" "}</Loader2>
+                <Button className="w-full my-4" disabled>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait
                 </Button>
               ) : (
                 <button

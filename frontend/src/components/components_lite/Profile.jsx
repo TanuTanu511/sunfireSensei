@@ -65,10 +65,10 @@ const Profile = () => {
               {isResume ? (
                 <a
                   target="_blank"
-                  href="https://github.com/"
+                  href={user?.profile?.resume}
                   className="text-blue-600 cursor-pointer hover:underline"
                 >
-                  {user?.profile?.resumeOriginalName}
+                  Download
                 </a>
               ) : (
                 <span>No Resume Found</span>
