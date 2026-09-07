@@ -12,6 +12,8 @@ import { USER_API_ENDPOINT } from "@/utils/data";
 import { setUser } from "@/redux/authSlice";
 import axios from "axios";
 import { toast } from "sonner";
+import { Button } from "../ui/button";
+import { Loader2 } from "lucide-react";
 
 const EditProfile = ({ open, setOpen }) => {
   const [ loading, setLoading ] = useState(false);
@@ -54,14 +56,14 @@ const EditProfile = ({ open, setOpen }) => {
       if(res.data.success){
         dispatch(setUser(res.data.user));
         toast.success(res.data.message);
+        setOpen(false);
       }
-      setOpen(false);
     } catch (error) {
       console.log(error);
       toast.error("Failed to update profile");
     }
     finally{
-      dispatch(setLoading(false));
+      setLoading(false);
     }
     console.log(input);
   }
@@ -158,11 +160,9 @@ const EditProfile = ({ open, setOpen }) => {
 
             <DialogFooter>
               {loading ? (
-                <div className="flex items-center justify-center my-10">
-                  <div className="spinner-border text-blue-600" role="status">
-                    <span className="sr-only">Loading...</span>
-                  </div>
-                </div>
+                <Button className="w-full my-4">
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin">Please wait{" "}</Loader2>
+                </Button>
               ) : (
                 <button
                   type="submit"
