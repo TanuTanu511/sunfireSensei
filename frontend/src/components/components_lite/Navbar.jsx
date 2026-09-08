@@ -56,22 +56,21 @@ function Navbar() {
             </div>
           ) : (
             <Popover>
-              <PopoverTrigger
-                render={
-                  <Avatar className="cursor-pointer">
-                    <AvatarImage src="https://github.com/shadcn.png" />
-                  </Avatar>
-                }
-              ></PopoverTrigger>
+              <PopoverTrigger asChild>
+                <Avatar className="cursor-pointer">
+                  <AvatarImage src={user?.profile?.profilephoto} alt="@user" />
+                </Avatar>
+                
+              </PopoverTrigger>
               <PopoverContent>
                 <div className="flex items-center gap-4">
                   <Avatar className="cursor-pointer">
-                    <AvatarImage src="https://github.com/shadcn.png" />
+                    <AvatarImage src={user?.profile?.profilephoto} />
                   </Avatar>
                   <div>
-                    <h3 className="font-medium">Tannu Siwach</h3>
+                    <h3 className="font-medium">{user?.fullname}</h3>
                     <p className="text-sm text-muted-foreground">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      {user?.profile?.bio}
                     </p>
                   </div>
                 </div>

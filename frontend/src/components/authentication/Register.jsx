@@ -29,7 +29,7 @@ const Register = () => {
   };
 
   const changefileHandler = (e) => {
-    setInput({ ...input, file: e.target.file?.[0] });
+    setInput({ ...input, file: e.target.files?.[0] });
   };
 
   const submitHandler = async (e) => {
@@ -46,9 +46,6 @@ const Register = () => {
     try {
       dispatch(setLoading(true));
       const res = await axios.post(`${USER_API_ENDPOINT}/register`, formData , {
-        headers:{
-          "Content-Type": "multipart/form-data",
-        },
         withCredentials:true,
       });
       if(res.data.success){
